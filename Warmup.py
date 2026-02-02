@@ -10,9 +10,9 @@ class MyApp(ShowBase):
         self.fighter.setColorScale(1.0, 0.0, 0.0, 1.0)
         self.accept('escape', self.quit)
         self.parent =self.loader.loadModel("./Assets/cube")
-        base.disablemouse()
-        base.camera.setPos(0.0, 0.0, 250.0)
-        base.camera.setHpr(0.0, -90.0, 0.0)
+        self.disablemouse()
+        self.camera.setPos(0.0, 0.0, 250.0)
+        self.camera.setHpr(0.0, -90.0, 0.0)
         self.accept('escape', self.quit)
 
         x = 0
@@ -35,6 +35,10 @@ class MyApp(ShowBase):
             self.taskMgr.add(self.moveNegativeX, 'moveNegativeX')
         else:
             self.taskMgr.remove('moveNegativeX')
+
+    def moveNegativeX(self, task):
+        self.fighter.setX(self.fighter, -1)
+        return task.cont
         
 import math, sys, random
 
