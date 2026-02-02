@@ -29,6 +29,12 @@ class MyApp(ShowBase):
 
     def quit(self):
         sys.exit()
+    
+    def negativeX(self, keyDown):
+        if (keyDown):
+            self.taskMgr.add(self.moveNegativeX, 'moveNegativeX')
+        else:
+            self.taskMgr.remove('moveNegativeX')
         
 import math, sys, random
 
@@ -36,4 +42,3 @@ import math, sys, random
 
 app = MyApp()
 app.run()
-
