@@ -10,6 +10,10 @@ class MyApp(ShowBase):
         self.fighter.setColorScale(1.0, 0.0, 0.0, 1.0)
         self.accept('escape', self.quit)
         self.parent =self.loader.loadModel("./Assets/cube")
+        base.disablemouse()
+        base.camera.setPos(0.0, 0.0, 250.0)
+        base.camera.setHpr(0.0, -90.0, 0.0)
+        self.accept('escape', self.quit)
 
         x = 0
         for i in range(100):
@@ -27,6 +31,8 @@ class MyApp(ShowBase):
         sys.exit()
         
 import math, sys, random
+
+
 
 app = MyApp()
 app.run()
