@@ -10,10 +10,12 @@ class MyApp(ShowBase):
         self.fighter.setColorScale(1.0, 0.0, 0.0, 1.0)
         self.accept('escape', self.quit)
         self.parent =self.loader.loadModel("./Assets/cube")
-        self.disablemouse()
+        self.disableMouse()
         self.camera.setPos(0.0, 0.0, 250.0)
         self.camera.setHpr(0.0, -90.0, 0.0)
         self.accept('escape', self.quit)
+        self.accept('arrow left', self.negativeX,[1])
+        self.accept('arrow left-up', self.negativeX, [0])
 
         x = 0
         for i in range(100):
