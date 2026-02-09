@@ -1,7 +1,9 @@
-# Player Movement in 3D Space
+
 
 from direct.showbase.ShowBase import ShowBase
 import math, sys, random
+from panda3d.core import CollisionTraverser, CollisionHandlerPusher
+from panda3d.core import CollisionNode, CollisionSphere
 
 class MyApp(ShowBase):
 
@@ -27,6 +29,19 @@ class MyApp(ShowBase):
         self.accept('arrow_forward-up', self.positiveZ, [0])
         self.accept('arrow_backward', self.negativeZ, [1])
         self.accept('arrow_backward-up', self.negativeZ, [0])
+        self.parentCnode = self.parent.attachNewNode(CollisionNode('pcnode'))
+        self.parentCnode.node().addSolid(CollisionSphere(0, 0, 0, 1.8))
+        self.fighterCnode = self.fighter.attachNewNode(CollisionNode('fcnode'))
+        self.fighterCnode.node().addSolid(CollisionSphere(0, 0, 0, 1.0))
+        self.traverser = CollisionTraverser()
+        self.traverser.traverse(self.render)
+        self.pusher = CollisionHandlerPusher()
+        self.pusher.addCollider(self.fighterCnode, self.fighter)
+        self.traverser.addCollider(self.fighterCnode, self.pusher)
+        self.cTrav = self.traverser
+        self.traverser.showCollisions(self.render)
+        self.parentCnode.show()
+        self.fighterCnode.show() 
 
         x = 0
         for i in range(100):
