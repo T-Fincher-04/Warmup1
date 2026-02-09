@@ -1,4 +1,4 @@
-# Player Movement in 3D Space
+
 
 from direct.showbase.ShowBase import ShowBase
 import math, sys, random
